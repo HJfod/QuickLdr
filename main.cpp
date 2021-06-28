@@ -17,7 +17,8 @@ bool __fastcall LoadingLayer_init(unknown_t self, edx_t edx, bool idk) {
     if (!GDMAKE_ORIG(self, edx, idk))
         return false;
     
-    sett->executeForLoadTime(qlLoadTime::qlSplashScreen);
+    if (!idk)
+        sett->executeForLoadTime(qlLoadTime::qlSplashScreen);
 
     return true;
 }
@@ -52,6 +53,8 @@ GDMAKE_MAIN {
         gdmake::writeFileString(settPath, "");
 
     sett->executeForLoadTime(qlLoadTime::qlStartUp);
+
+    return true;
 }
 
 GDMAKE_UNLOAD {}
